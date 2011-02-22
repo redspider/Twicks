@@ -69,8 +69,8 @@ mc.raw.ensure_index([('tag',pymongo.DESCENDING)])
 class MessageHandler(SocketIOHandler):
     def on_open(self, *args, **kwargs):
         """ Register participant """
-        if (len(participants) > 40):
-            self.close()
+        if (len(participants) > 0):
+            self.send(json.dumps({'type': 'error', 'message': 'Sorry the server is full right now'}))
             return
 
         self.last_message = time.time()
@@ -110,6 +110,7 @@ class MessageHandler(SocketIOHandler):
 
     def on_close(self):
         """ Remove participant """
+        print "Removed client"
         participants.remove(self)
 
 #use the routes classmethod to build the correct resource

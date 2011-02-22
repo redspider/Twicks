@@ -1,4 +1,5 @@
 var qcounts = {};
+var reconnect = true;
 
 $(document).ready(function () {
     var host = window.location.host;
@@ -11,6 +12,14 @@ $(document).ready(function () {
 
 
         var d = $.parseJSON(data);
+
+        if (d.type == 'error') {
+            reconnect = false;
+            s.disconnect();
+            alert(d.message);
+            return;
+        }
+
         var m = d['m'];
         var queue = m.tag;
 
@@ -53,8 +62,10 @@ $(document).ready(function () {
         }
     });
     s.addEvent('disconnect', function (e) {
-        alert("The connection to the server has been lost. Will try to reconnect");
-        window.location.reload();
+        if (reconnect) {
+            alert("The connection to the server has been lost. Will try to reconnect");
+            window.location.reload();
+        }
     });
 
     $('#rate_select').change(function (e) {

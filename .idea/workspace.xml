@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="baabc6bd-a72a-42f1-83b9-9fb907680b05" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.py" afterPath="$PROJECT_DIR$/server.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/twicks.js" afterPath="$PROJECT_DIR$/static/twicks.js" />
     </list>
     <ignored path="twicks.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,7 +38,7 @@
       <file leaf-file-name="server.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="18" selection-start="2262" selection-end="2262" vertical-scroll-proportion="0.14112459">
+            <state line="125" column="67" selection-start="4124" selection-end="4124" vertical-scroll-proportion="0.8588754">
               <folding />
             </state>
           </provider>
@@ -55,7 +56,7 @@
       <file leaf-file-name="twicks.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/twicks.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="0" selection-start="2495" selection-end="2495" vertical-scroll-proportion="0.0">
+            <state line="48" column="23" selection-start="1761" selection-end="1761" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -326,14 +327,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/twicks.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="0" selection-start="2495" selection-end="2495" vertical-scroll-proportion="0.0">
+        <state line="48" column="23" selection-start="1761" selection-end="1761" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="18" selection-start="2262" selection-end="2262" vertical-scroll-proportion="0.14112459">
+        <state line="125" column="67" selection-start="4124" selection-end="4124" vertical-scroll-proportion="0.8588754">
           <folding />
         </state>
       </provider>
