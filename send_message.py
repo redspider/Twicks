@@ -39,7 +39,7 @@ class TwitterSearch(object):
         return result['results']
         
         
-ts = TwitterSearch('#eqnz OR earthquake')
+ts = TwitterSearch('#eqnz OR earthquake OR #nzeq OR #chch')
 
 pre_load = dict()
 
