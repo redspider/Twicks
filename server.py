@@ -1,7 +1,7 @@
 from datetime import datetime
 import tornado.web
 import pymongo
-from pymongo.bson.timestamp import Timestamp
+import time
 import os
 import simplejson as json
 from tornad_io import SocketIOHandler
@@ -18,7 +18,7 @@ class InboundHandler(tornado.web.RequestHandler):
     """ Receive new messages """
     def post(self):
         msg = {
-            'dated': Timestamp(datetime.now()),
+            'dated': time.time(),
             'source': self.get_argument('source'),
             'from': self.get_argument('from'),
             'profile_image': self.get_argument('profile_image'),
