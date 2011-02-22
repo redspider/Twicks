@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="baabc6bd-a72a-42f1-83b9-9fb907680b05" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/send_message.py" afterPath="$PROJECT_DIR$/send_message.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.py" afterPath="$PROJECT_DIR$/server.py" />
     </list>
     <ignored path="twicks.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,10 +34,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="server.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="35" selection-start="1464" selection-end="1464" vertical-scroll-proportion="0.0">
+            <state line="37" column="1" selection-start="1064" selection-end="1064" vertical-scroll-proportion="0.51157665">
               <folding />
             </state>
           </provider>
@@ -70,10 +70,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="send_message.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="send_message.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/send_message.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="21" selection-start="1859" selection-end="1859" vertical-scroll-proportion="0.65995526">
+            <state line="52" column="0" selection-start="1036" selection-end="1036" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -104,9 +104,9 @@
       <list>
         <option value="$PROJECT_DIR$/static/twicks.js" />
         <option value="$PROJECT_DIR$/static/twicks.less" />
-        <option value="$PROJECT_DIR$/server.py" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/send_message.py" />
+        <option value="$PROJECT_DIR$/server.py" />
       </list>
     </option>
   </component>
@@ -345,16 +345,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.py">
+    <entry file="file://$PROJECT_DIR$/send_message.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="35" selection-start="1464" selection-end="1464" vertical-scroll-proportion="0.0">
+        <state line="52" column="0" selection-start="1036" selection-end="1036" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/send_message.py">
+    <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="21" selection-start="1859" selection-end="1859" vertical-scroll-proportion="0.65995526">
+        <state line="37" column="1" selection-start="1064" selection-end="1064" vertical-scroll-proportion="0.51157665">
           <folding />
         </state>
       </provider>

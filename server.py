@@ -34,7 +34,7 @@ class InboundHandler(tornado.web.RequestHandler):
         mjson = json.dumps({'type': 'msg', 'channel': 'raw', 'm': msg})
 
         for p in participants:
-            if (random.randint(0,30) == 0):
+            if ((time.time() - p.last_message) > 1.0):
                 p.send(mjson)
 
         self.write(json.dumps({'status': 'ok'}))
@@ -66,6 +66,7 @@ mc.raw.ensure_index([('tag',pymongo.DESCENDING)])
 class MessageHandler(SocketIOHandler):
     def on_open(self, *args, **kwargs):
         """ Register participant """
+        self.last_message = time.time()
         participants.add(self)
         for m in mc.raw.find().sort([('dated', -1)]).limit(20):
             m['id'] = str(m['_id'])
