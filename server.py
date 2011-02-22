@@ -61,7 +61,7 @@ mongo_connection = pymongo.Connection()
 mc = mongo_connection['twicks']
 
 mc.raw.ensure_index([('dated',pymongo.DESCENDING)])
-mc.raw.ensure_index([('m.tag',pymongo.DESCENDING)])
+mc.raw.ensure_index([('tag',pymongo.DESCENDING)])
 
 class MessageHandler(SocketIOHandler):
     def on_open(self, *args, **kwargs):
@@ -78,7 +78,7 @@ class MessageHandler(SocketIOHandler):
                 pass
 
         for tag in ['damage','advice','requests']:
-            for m in mc.raw.find({'m': {'tag': tag}}).sort([('dated', -1)]).limit(50):
+            for m in mc.raw.find({'tag': tag}).sort([('dated', -1)]).limit(50):
                 m['id'] = str(m['_id'])
                 m['_id'] = None
                 j = None
