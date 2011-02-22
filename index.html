@@ -11,20 +11,32 @@
 <body>
 <h3>Crowd filtering for #eqnz</h3>
 <p><b>How it works:</b> Real simple. You watch the tweets on the left, which are a sample from the live stream. If a tweet matches one of the categories (Information about damage, Advice or a Request), hit the button and it'll appear in the relevant column. The purpose is to help people doing reports or information tracking get a filtered feed so they can do their job faster.</p>
+<p>Currently <b id="count">1</b> participants filtering</p>
 <div class="column">
     <h4>Raw feed</h4>
+    <p>
+        <select name="rate" id="rate_select">
+            <option value="1">One tweet every second</option>
+            <option value="2" selected="selected">One tweet every two seconds</option>
+            <option value="5">One tweet every five seconds</option>
+            <option value="10">One tweet every ten seconds</option>
+        </select>
+    </p>
     <div id="queue_raw"></div>
 </div>
 <div class="column">
-    <h4>Damage</h4>
+    <h4>Damage / Impact</h4>
+    <p>For damage reports or particular impacts</p>
     <div id="queue_damage"></div>
 </div>
 <div class="column">
-    <h4>Advice</h4>
+    <h4>Advice / Offers</h4>
+    <p>For useful advice and offers of assistance</p>
     <div id="queue_advice"></div>
 </div>
 <div class="column">
     <h4>Requests</h4>
+    <p>For requests (both general and about individual people)</p>
     <div id="queue_requests"></div>    
 </div>
 <div style="clear: both"></div>

@@ -30,11 +30,12 @@ class InboundHandler(tornado.web.RequestHandler):
         uid = mc.raw.insert(msg)
         msg['id'] = str(uid)
         msg['_id'] = None
+        msg['user_count'] = len(participants)
 
         mjson = json.dumps({'type': 'msg', 'channel': 'raw', 'm': msg})
 
         for p in participants:
-            if ((time.time() - p.last_message) > 2.0):
+            if ((time.time() - p.last_message) > float(p.rate)):
                 p.last_message = time.time()
                 p.send(mjson)
 
@@ -49,6 +50,7 @@ class UpdateHandler(tornado.web.RequestHandler):
 
         msg['id'] = str(msg['_id'])
         msg['_id'] = None
+        msg['user_count'] = len(participants)
 
         if msg['votes'] == 1:
             for p in participants:
@@ -68,10 +70,12 @@ class MessageHandler(SocketIOHandler):
     def on_open(self, *args, **kwargs):
         """ Register participant """
         self.last_message = time.time()
+        self.rate = 2
         participants.add(self)
         for m in mc.raw.find().sort([('dated', -1)]).limit(20):
             m['id'] = str(m['_id'])
             m['_id'] = None
+            m['user_count'] = len(participants)
             j = None
             try:
                 j = json.dumps({'type': 'msg', 'channel': 'raw', 'm': m})
@@ -83,6 +87,8 @@ class MessageHandler(SocketIOHandler):
             for m in mc.raw.find({'tag': tag}).sort([('dated', -1)]).limit(50):
                 m['id'] = str(m['_id'])
                 m['_id'] = None
+                m['user_count'] = len(participants)
+
                 j = None
                 try:
                     j = json.dumps({'type': 'msg', 'channel': 'raw', 'm': m})
@@ -93,7 +99,10 @@ class MessageHandler(SocketIOHandler):
 
     def on_message(self, message):
         """ Uprate a message """
-        pass
+        m = json.loads(message)
+
+        if (m['type'] == 'options'):
+            self.rate = int(m['rate'])
 
     def on_close(self):
         """ Remove participant """
