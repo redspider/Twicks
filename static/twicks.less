@@ -1,0 +1,88 @@
+/* Reset to some base standard */
+@import url("reset.css");
+/* Set up text so it isn't completely awful */
+@import url("text.css");
+
+@base_color: #ffffff;
+@primary_color: #444444;
+@secondary_color: #cc0000;
+
+
+/* Page */
+
+html {
+    background-color: @base_color - #111;
+}
+
+body {
+    background-color: white;
+    border: none;
+    margin: 0px auto 0px auto;
+    padding: 10px;
+    position: relative;
+    color: @primary_color + #333;
+}
+
+a {
+    color: #ff6600;
+    text-decoration: none;
+}
+
+div.column {
+    float: left;
+    width: 300px;
+    margin: 0px 20px 30px 20px;
+}
+
+/* Message */
+
+div.message {
+    background-color: #282828;
+    padding: 4px 4px 4px 60px;
+    min-height: 48px;
+    position: relative;
+    color: #cccccc;
+    margin: 2px;
+    font-size: 8pt;
+    padding-bottom: 30px;
+
+    .from_user a {
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        font-size: 10pt;
+    }
+
+    img.profile_image {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: 48px;
+        height: 48px;
+    }
+
+    div.buttons {
+        position: absolute;
+        width: 288px;
+        padding: 4px;
+        text-align: right;
+        background-color: #383838;
+        bottom: 0px;
+        right: 0px;
+    }
+
+    button {
+        display: inline;
+        width: 60px;
+        margin: 2px;
+    }
+
+}
+
+div.message.tagged {
+    background-color: #585858;
+
+    div.buttons {
+        background-color: #686868;
+    }
+}

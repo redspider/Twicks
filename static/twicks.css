@@ -1,0 +1,70 @@
+@import url("reset.css");
+
+@import url("text.css");
+/* Reset to some base standard */
+/* Set up text so it isn't completely awful */
+/* Page */
+html {
+  background-color: #eeeeee;
+}
+body {
+  background-color: white;
+  border: none;
+  margin: 0px auto 0px auto;
+  padding: 10px;
+  position: relative;
+  color: #777777;
+}
+a {
+  color: #ff6600;
+  text-decoration: none;
+}
+div.column {
+  float: left;
+  width: 300px;
+  margin: 0px 20px 30px 20px;
+}
+/* Message */
+div.message {
+  background-color: #282828;
+  padding: 4px 4px 4px 60px;
+  min-height: 48px;
+  position: relative;
+  color: #cccccc;
+  margin: 2px;
+  font-size: 8pt;
+  padding-bottom: 30px;
+}
+div.message .from_user a {
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  font-size: 10pt;
+}
+div.message img.profile_image {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 48px;
+  height: 48px;
+}
+div.message div.buttons {
+  position: absolute;
+  width: 288px;
+  padding: 4px;
+  text-align: right;
+  background-color: #383838;
+  bottom: 0px;
+  right: 0px;
+}
+div.message button {
+  display: inline;
+  width: 60px;
+  margin: 2px;
+}
+div.message.tagged {
+  background-color: #585858;
+}
+div.message.tagged div.buttons {
+  background-color: #686868;
+}
