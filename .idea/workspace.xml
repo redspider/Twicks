@@ -37,7 +37,7 @@
       <file leaf-file-name="server.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="1" selection-start="1064" selection-end="1064" vertical-scroll-proportion="0.51157665">
+            <state line="37" column="44" selection-start="1107" selection-end="1107" vertical-scroll-proportion="0.51157665">
               <folding />
             </state>
           </provider>
@@ -354,7 +354,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="1" selection-start="1064" selection-end="1064" vertical-scroll-proportion="0.51157665">
+        <state line="37" column="44" selection-start="1107" selection-end="1107" vertical-scroll-proportion="0.51157665">
           <folding />
         </state>
       </provider>
