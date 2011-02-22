@@ -5,7 +5,7 @@
 /* Set up text so it isn't completely awful */
 /* Page */
 html {
-  background-color: #eeeeee;
+  background-color: #373737;
 }
 body {
   background-color: white;
@@ -13,7 +13,7 @@ body {
   margin: 0px auto 0px auto;
   padding: 10px;
   position: relative;
-  color: #777777;
+  color: #dddddd;
 }
 a {
   color: #ff6600;
