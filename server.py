@@ -78,7 +78,7 @@ class MessageHandler(SocketIOHandler):
                 pass
 
         for tag in ['damage','advice','requests']:
-            for m in mc.raw.find({'m.tag': tag}).sort([('dated', -1)]).limit(50):
+            for m in mc.raw.find({'m': {'tag': tag}}).sort([('dated', -1)]).limit(50):
                 m['id'] = str(m['_id'])
                 m['_id'] = None
                 j = None
