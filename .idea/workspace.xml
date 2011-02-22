@@ -64,7 +64,7 @@
       <file leaf-file-name="twicks.less" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/twicks.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="277" selection-end="277" vertical-scroll-proportion="0.29988974">
+            <state line="18" column="0" selection-start="277" selection-end="319" vertical-scroll-proportion="0.31753033">
               <folding />
             </state>
           </provider>
@@ -354,7 +354,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/twicks.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="277" selection-end="277" vertical-scroll-proportion="0.29988974">
+        <state line="18" column="0" selection-start="277" selection-end="319" vertical-scroll-proportion="0.31753033">
           <folding />
         </state>
       </provider>
