@@ -35,6 +35,7 @@ class InboundHandler(tornado.web.RequestHandler):
 
         for p in participants:
             if ((time.time() - p.last_message) > 1.0):
+                p.last_message = time.time()
                 p.send(mjson)
 
         self.write(json.dumps({'status': 'ok'}))
