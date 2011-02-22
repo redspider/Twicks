@@ -99,7 +99,7 @@ class MessageHandler(SocketIOHandler):
 
     def on_message(self, message):
         """ Uprate a message """
-        m = json.loads(message)
+        m = message
 
         if (m['type'] == 'options'):
             self.rate = int(m['rate'])
