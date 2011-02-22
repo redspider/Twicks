@@ -1,19 +1,26 @@
 var qcounts = {};
 
 $(document).ready(function () {
-    var s = new io.Socket("monitor1.redspider.co.nz", {port: 8888});
+    var host = window.location.host;
+    host = host.replace(/\:.*/,'');
+    var s = new io.Socket(host, {port: 8888});
+
+
     s.connect();
     s.addEvent('message', function (data) {
+
+
         var d = $.parseJSON(data);
         var m = d['m'];
         var queue = m.tag;
+
+        $('#count').html(''+m.user_count);
+
         if (!queue) {
             queue='raw';
         }
-        console.log("Message received",m,queue);
 
         var target = $("#queue_"+queue);
-        console.log("#queue_"+queue, target);
         if (target) {
 
         var processed_text = m.message;
@@ -45,6 +52,17 @@ $(document).ready(function () {
             }
         }
     });
+    s.addEvent('disconnect', function (e) {
+        alert("The connection to the server has been lost. Will try to reconnect");
+        window.location.reload();
+    });
+
+    $('#rate_select').change(function (e) {
+        console.log("Change of rate detected");
+        s.send({'type': 'options', 'rate': $('#rate_select').val()});
+        console.log("Change of rate sent");
+    });
+
 });
 
 function tag(id, tag) {
