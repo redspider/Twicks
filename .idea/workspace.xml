@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="baabc6bd-a72a-42f1-83b9-9fb907680b05" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/twicks.less" afterPath="$PROJECT_DIR$/static/twicks.less" />
     </list>
     <ignored path="twicks.iws" />
@@ -65,7 +64,7 @@
       <file leaf-file-name="twicks.less" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/twicks.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="19" selection-start="174" selection-end="174" vertical-scroll-proportion="0.10584344">
+            <state line="17" column="0" selection-start="277" selection-end="277" vertical-scroll-proportion="0.29988974">
               <folding />
             </state>
           </provider>
@@ -355,7 +354,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/twicks.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="19" selection-start="174" selection-end="174" vertical-scroll-proportion="0.10584344">
+        <state line="17" column="0" selection-start="277" selection-end="277" vertical-scroll-proportion="0.29988974">
           <folding />
         </state>
       </provider>
