@@ -69,6 +69,10 @@ mc.raw.ensure_index([('tag',pymongo.DESCENDING)])
 class MessageHandler(SocketIOHandler):
     def on_open(self, *args, **kwargs):
         """ Register participant """
+        if (len(participants) > 40):
+            self.close()
+            return
+
         self.last_message = time.time()
         self.rate = 2
         participants.add(self)
