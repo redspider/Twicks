@@ -67,7 +67,7 @@ class MessageHandler(SocketIOHandler):
     def on_open(self, *args, **kwargs):
         """ Register participant """
         participants.add(self)
-        for m in mc.raw.find().sort([('dated', -1)]).limit(50):
+        for m in mc.raw.find().sort([('dated', -1)]).limit(20):
             m['id'] = str(m['_id'])
             m['_id'] = None
             j = None
@@ -76,6 +76,17 @@ class MessageHandler(SocketIOHandler):
                 self.send(j)
             except Exception,e:
                 pass
+
+        for tag in ['damage','advice','requests']:
+            for m in mc.raw.find({'m.tag': tag}).sort([('dated', -1)]).limit(50):
+                m['id'] = str(m['_id'])
+                m['_id'] = None
+                j = None
+                try:
+                    j = json.dumps({'type': 'msg', 'channel': 'raw', 'm': m})
+                    self.send(j)
+                except Exception,e:
+                    pass
         # Send welcome
 
     def on_message(self, message):
