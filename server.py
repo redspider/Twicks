@@ -1,6 +1,7 @@
 from datetime import datetime
 import tornado.web
 import pymongo
+import bson
 import time
 import os
 import simplejson as json
@@ -33,14 +34,14 @@ class InboundHandler(tornado.web.RequestHandler):
         mjson = json.dumps({'type': 'msg', 'channel': 'raw', 'm': msg})
 
         for p in participants:
-            if (random.randint(0,5) == 0):
+            if (random.randint(0,8) == 0):
                 p.send(mjson)
 
         self.write(json.dumps({'status': 'ok'}))
 
 class UpdateHandler(tornado.web.RequestHandler):
     def post(self):
-        id = pymongo.objectid.ObjectId(self.get_argument('id'))
+        id = bson.objectid.ObjectId(self.get_argument('id'))
         tag = self.get_argument('tag','')
         mc.raw.update({'_id': id}, {'$inc': {'votes': 1}, '$set': {'tag': tag}})
         msg = mc.raw.find_one({'_id': id})
@@ -59,14 +60,14 @@ participants = set()
 mongo_connection = pymongo.Connection()
 mc = mongo_connection['twicks']
 
-mc.ensure_index(('dated',pymongo.DESCENDING))
-mc.ensure_index('m.tag')
+mc.raw.ensure_index([('dated',pymongo.DESCENDING)])
+mc.raw.ensure_index([('m.tag',pymongo.DESCENDING)])
 
 class MessageHandler(SocketIOHandler):
     def on_open(self, *args, **kwargs):
         """ Register participant """
         participants.add(self)
-        for m in mc.raw.find().sort({'dated': -1}).limit(50):
+        for m in mc.raw.find().sort([('dated', -1)]).limit(50):
             m['id'] = str(m['_id'])
             m['_id'] = None
             j = None

@@ -1,7 +1,7 @@
 var qcounts = {};
 
 $(document).ready(function () {
-    var s = new io.Socket("localhost", {port: 8888});
+    var s = new io.Socket("monitor1.redspider.co.nz", {port: 8888});
     s.connect();
     s.addEvent('message', function (data) {
         var d = $.parseJSON(data);

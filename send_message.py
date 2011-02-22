@@ -58,6 +58,7 @@ while True:
         print "Sending new entry: %s" % r['text'].encode('ascii','ignore')
         urllib2.urlopen('http://127.0.0.1:8888/post',urllib.urlencode({'source': 'twitter', 'from': r['from_user'], 'profile_image': r['profile_image_url'], 'message': r['text'].encode('ascii','ignore'), 'url': 'x'}))
         time.sleep(10.0/len(messages))
+        waiting += 10.0/len(messages)
         #conn.send(simplejson.dumps(r), destination='/topic/%s' % channel)
         
 
