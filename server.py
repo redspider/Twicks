@@ -69,7 +69,7 @@ mc.raw.ensure_index([('tag',pymongo.DESCENDING)])
 class MessageHandler(SocketIOHandler):
     def on_open(self, *args, **kwargs):
         """ Register participant """
-        if (len(participants) > 80):
+        if (len(participants) > 120):
             self.send(json.dumps({'type': 'error', 'message': 'Sorry the server is full right now'}))
             return
 
