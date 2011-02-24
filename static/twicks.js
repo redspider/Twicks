@@ -4,7 +4,7 @@ var reconnect = true;
 $(document).ready(function () {
     var host = window.location.host;
     host = host.replace(/\:.*/,'');
-    var s = new WebSocket('ws://localhost:8888/ws');
+    var s = new WebSocket('ws://monitor1.redspider.co.nz:8888/ws');
     // new io.Socket(host, {port: 8888, rememberTransport: false, connectTimeout: 10000, transports: ['websocket']});
     var paused = false;
 
