@@ -38,6 +38,8 @@ class InboundHandler(tornado.web.RequestHandler):
             if ((time.time() - p.last_message) > float(p.rate)):
                 p.last_message = time.time()
                 p.send(mjson)
+            if (time.time() - p.last_received) > 60:
+                p.connection.end()
 
         self.write(json.dumps({'status': 'ok'}))
 
@@ -74,6 +76,7 @@ class MessageHandler(SocketIOHandler):
             return
 
         self.last_message = time.time()
+        self.last_received = time.time()
         self.rate = 2
         participants.add(self)
         for m in mc.raw.find().sort([('dated', -1)]).limit(20):
@@ -105,6 +108,7 @@ class MessageHandler(SocketIOHandler):
     def on_message(self, message):
         """ Uprate a message """
         m = message
+        self.last_received = time.time()
 
         if (m['type'] == 'options'):
             self.rate = int(m['rate'])

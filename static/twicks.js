@@ -60,6 +60,8 @@ $(document).ready(function () {
                 qcounts[queue] -= 1;
             }
         }
+        // Ping every 10 seconds just to let them know we're here
+        setInterval(function () { s.send({'type': 'ping'}); },10000);
     });
     s.addEvent('disconnect', function (e) {
         if (reconnect) {

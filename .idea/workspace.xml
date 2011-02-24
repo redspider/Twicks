@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="baabc6bd-a72a-42f1-83b9-9fb907680b05" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.py" afterPath="$PROJECT_DIR$/server.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/twicks.js" afterPath="$PROJECT_DIR$/static/twicks.js" />
     </list>
     <ignored path="twicks.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,7 +29,7 @@
       <file leaf-file-name="server.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="100" column="27" selection-start="3290" selection-end="3290" vertical-scroll-proportion="0.6527012">
+            <state line="62" column="0" selection-start="1956" selection-end="1956" vertical-scroll-proportion="-0.31753033">
               <folding />
             </state>
           </provider>
@@ -65,7 +65,7 @@
       <file leaf-file-name="twicks.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/twicks.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="23" selection-start="1761" selection-end="1761" vertical-scroll-proportion="0.0">
+            <state line="26" column="0" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -114,8 +114,8 @@
       <list>
         <option value="$PROJECT_DIR$/static/twicks.less" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/static/twicks.js" />
         <option value="$PROJECT_DIR$/send_message.py" />
+        <option value="$PROJECT_DIR$/static/twicks.js" />
         <option value="$PROJECT_DIR$/server.py" />
       </list>
     </option>
@@ -336,20 +336,6 @@
         <state line="33" column="22" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="7" selection-start="1818" selection-end="1818" vertical-scroll-proportion="-28.16">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/twicks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="23" selection-start="1761" selection-end="1761" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/send_message.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="50" column="26" selection-start="1052" selection-end="1052" vertical-scroll-proportion="0.0">
@@ -371,9 +357,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="7" selection-start="1818" selection-end="1818" vertical-scroll-proportion="-28.16">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/twicks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="0" selection-start="542" selection-end="542" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="27" selection-start="3290" selection-end="3290" vertical-scroll-proportion="0.6527012">
+        <state line="62" column="0" selection-start="1956" selection-end="1956" vertical-scroll-proportion="-0.31753033">
           <folding />
         </state>
       </provider>
