@@ -60,7 +60,8 @@ class InboundHandler(tornado.web.RequestHandler):
                 p.last_message = time.time()
                 p.send(mjson)
             if (time.time() - p.last_received) > 60:
-                p.connection.end()
+                participants.remove(p)
+                #p.connection.end()
 
         self.write(json.dumps({'status': 'ok'}))
 
