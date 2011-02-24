@@ -4,16 +4,19 @@ var reconnect = true;
 $(document).ready(function () {
     var host = window.location.host;
     host = host.replace(/\:.*/,'');
-    var s = new io.Socket(host, {port: 8888, rememberTransport: false, connectTimeout: 10000, transports: ['websocket']});
+    var s = new WebSocket('ws://localhost:8888/ws');
+    // new io.Socket(host, {port: 8888, rememberTransport: false, connectTimeout: 10000, transports: ['websocket']});
     var paused = false;
 
-    s.addEvent('connecting', function (transport) {
+    s.onopen = function (transport) {
         console.log(transport);
         $('#status').html("Connecting via " + transport + "...");
-    });
+    };
     
-    s.addEvent('message', function (data) {
+    s.onmessage = function (evt) {
+        var data = evt.data;
         var d = $.parseJSON(data);
+        console.log(evt.data);
         console.log(d);
 
         if (d.type == 'error') {
@@ -73,28 +76,25 @@ $(document).ready(function () {
 
 
             if (qcounts[queue] > 30) {
-                console.log("Queue " + queue + " too long (" + qcounts[queue] + ")");
+                //console.log("Queue " + queue + " too long (" + qcounts[queue] + ")");
                 target.children().last().remove();
                 qcounts[queue] -= 1;
             }
         }
-        // Ping every 10 seconds just to let them know we're here
-        setInterval(function () { s.send({'type': 'ping'}); },10000);
-    });
-    s.addEvent('disconnect', function (e) {
+    };
+    s.onclose = function (e) {
         $('#status').html("Disconnected");
         if (reconnect) {
             alert("The connection to the server has been lost. Will try to reconnect");
             window.location.reload();
         }
-    });
+    };
 
-    s.connect();
     $('#status').html("Connecting...")
 
     $('#rate_select').change(function (e) {
         console.log("Change of rate detected");
-        s.send({'type': 'options', 'rate': $('#rate_select').val()});
+        s.send(JSON.stringify({'type': 'options', 'rate': $('#rate_select').val()}));
         console.log("Change of rate sent");
     });
 
@@ -107,6 +107,9 @@ $(document).ready(function () {
             $('#pause_button').html('Unpause');
         }
     });
+    // Ping every 10 seconds just to let them know we're here
+    setInterval(function () { console.log("Ping"); s.send(JSON.stringify({'type': 'ping'})); },10000);
+
 
 });
 
