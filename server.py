@@ -104,6 +104,8 @@ class MessageHandler(tornadio.SocketConnection):
             print "Server full"
             self.send(json.dumps({'type': 'error', 'message': 'Sorry the server is full right now'}))
             return
+        
+        self.send(json.dumps({'type':'welcome', 'message': 'Connected!'}))
 
         self.last_message = time.time()
         self.last_received = time.time()
