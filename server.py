@@ -8,6 +8,15 @@ import simplejson as json
 from tornad_io import SocketIOHandler
 from tornad_io import SocketIOServer
 import random
+from md5 import md5
+
+ucheck = dict()
+
+def normalise(s):
+    s = s.replace(r'RT @[^ ]+','')
+    s = s.lower()
+    s = s.strip()
+    return md5(s).hexdigest()
 
 class IndexHandler(tornado.web.RequestHandler):
     """Regular HTTP handler to serve the dashboard page"""
@@ -18,6 +27,8 @@ class IndexHandler(tornado.web.RequestHandler):
 class InboundHandler(tornado.web.RequestHandler):
     """ Receive new messages """
     def post(self):
+        global ucheck
+
         msg = {
             'dated': time.time(),
             'source': self.get_argument('source'),
@@ -25,7 +36,17 @@ class InboundHandler(tornado.web.RequestHandler):
             'profile_image': self.get_argument('profile_image'),
             'message': self.get_argument('message'),
             'url': self.get_argument('url'),
-            'votes': 0}
+            'votes': 0,
+            'key': normalise(self.get_argument('message'))
+        }
+
+        if ucheck.has_key(msg['key']) and ((time.time() - ucheck[msg['key']]) > 1200):
+            # If message has already been through and 20 minutes has passed.
+            print "Ignored key %s (%s)" % (msg['key'], msg['message'])
+            return
+        
+        if not ucheck.has_key(msg['key']):
+            ucheck[msg['key']] = time.time()
 
         uid = mc.raw.insert(msg)
         msg['id'] = str(uid)
