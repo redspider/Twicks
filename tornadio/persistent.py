@@ -31,6 +31,7 @@ class TornadioWebSocketHandler(WebSocketHandler):
     # https://github.com/facebook/tornado/commit/86bd681ff841f272c5205f24cd2a613535ed2e00
     def _execute(self, transforms, *args, **kwargs):
         # Next Tornado will have the built-in support for HAProxy
+        """
         if tornado.version_info <= (1, 2, 0):
             # Write the initial headers before attempting to read the challenge.
             # This is necessary when using proxies (such as HAProxy),
@@ -47,6 +48,7 @@ class TornadioWebSocketHandler(WebSocketHandler):
                         origin=self.request.headers["Origin"],
                         host=self.request.host,
                         path=self.request.path)))
+        """
 
         super(TornadioWebSocketHandler, self)._execute(transforms, *args,
                                                        **kwargs)
