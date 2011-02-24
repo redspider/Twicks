@@ -100,12 +100,13 @@ class MessageHandler(tornadio.SocketConnection):
         global participants
         print "New client"
 
+        self.send(json.dumps({'type':'welcome', 'message': 'Connected!'}))
+
         if len(participants) > 120:
             print "Server full"
             self.send(json.dumps({'type': 'error', 'message': 'Sorry the server is full right now'}))
             return
         
-        self.send(json.dumps({'type':'welcome', 'message': 'Connected!'}))
 
         self.last_message = time.time()
         self.last_received = time.time()
