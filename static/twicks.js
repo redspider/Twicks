@@ -114,7 +114,7 @@ $(document).ready(function () {
 });
 
 function tag(id, tag) {
-    $('#m_'+id+'_raw').addClass("tagged");
+    $('#m_'+id+'_raw').fadeOut();
     $.post('/update',{'id':id, 'tag':tag});
     return false;
 }
