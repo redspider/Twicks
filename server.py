@@ -8,6 +8,15 @@ import simplejson as json
 from tornad_io import SocketIOHandler
 from tornad_io import SocketIOServer
 import random
+from md5 import md5
+
+ucheck = dict()
+
+def normalise(s):
+    s = s.replace(r'RT @[^ ]+','')
+    s = s.lower()
+    s = s.strip()
+    return md5(s).hexdigest()
 
 class IndexHandler(tornado.web.RequestHandler):
     """Regular HTTP handler to serve the dashboard page"""
@@ -18,6 +27,8 @@ class IndexHandler(tornado.web.RequestHandler):
 class InboundHandler(tornado.web.RequestHandler):
     """ Receive new messages """
     def post(self):
+        global ucheck
+
         msg = {
             'dated': time.time(),
             'source': self.get_argument('source'),
@@ -25,7 +36,17 @@ class InboundHandler(tornado.web.RequestHandler):
             'profile_image': self.get_argument('profile_image'),
             'message': self.get_argument('message'),
             'url': self.get_argument('url'),
-            'votes': 0}
+            'votes': 0,
+            'key': normalise(self.get_argument('message'))
+        }
+
+        if ucheck.has_key(msg['key']) and ((time.time() - ucheck[msg['key']]) > 1200):
+            # If message has already been through and 20 minutes has passed.
+            print "Ignored key %s (%s)" % (msg['key'], msg['message'])
+            return
+        
+        if not ucheck.has_key(msg['key']):
+            ucheck[msg['key']] = time.time()
 
         uid = mc.raw.insert(msg)
         msg['id'] = str(uid)
@@ -38,6 +59,8 @@ class InboundHandler(tornado.web.RequestHandler):
             if ((time.time() - p.last_message) > float(p.rate)):
                 p.last_message = time.time()
                 p.send(mjson)
+            if (time.time() - p.last_received) > 60:
+                p.connection.end()
 
         self.write(json.dumps({'status': 'ok'}))
 
@@ -71,9 +94,11 @@ class MessageHandler(SocketIOHandler):
         """ Register participant """
         if (len(participants) > 120):
             self.send(json.dumps({'type': 'error', 'message': 'Sorry the server is full right now'}))
+            self.connection.end()
             return
 
         self.last_message = time.time()
+        self.last_received = time.time()
         self.rate = 2
         participants.add(self)
         for m in mc.raw.find().sort([('dated', -1)]).limit(20):
@@ -88,7 +113,8 @@ class MessageHandler(SocketIOHandler):
                 pass
 
         for tag in ['damage','advice','requests']:
-            for m in mc.raw.find({'tag': tag}).sort([('dated', -1)]).limit(50):
+            messages = list(mc.raw.find({'tag': tag}).sort([('dated', -1)]).limit(50))
+            for m in messages[::-1]:
                 m['id'] = str(m['_id'])
                 m['_id'] = None
                 m['user_count'] = len(participants)
@@ -104,6 +130,7 @@ class MessageHandler(SocketIOHandler):
     def on_message(self, message):
         """ Uprate a message """
         m = message
+        self.last_received = time.time()
 
         if (m['type'] == 'options'):
             self.rate = int(m['rate'])

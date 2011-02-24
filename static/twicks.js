@@ -5,7 +5,7 @@ $(document).ready(function () {
     var host = window.location.host;
     host = host.replace(/\:.*/,'');
     var s = new io.Socket(host, {port: 8888});
-
+    var paused = false;
 
     s.connect();
     s.addEvent('message', function (data) {
@@ -17,6 +17,10 @@ $(document).ready(function () {
             reconnect = false;
             s.disconnect();
             alert(d.message);
+            return;
+        }
+
+        if (paused) {
             return;
         }
 
@@ -60,6 +64,8 @@ $(document).ready(function () {
                 qcounts[queue] -= 1;
             }
         }
+        // Ping every 10 seconds just to let them know we're here
+        setInterval(function () { s.send({'type': 'ping'}); },10000);
     });
     s.addEvent('disconnect', function (e) {
         if (reconnect) {
@@ -72,6 +78,16 @@ $(document).ready(function () {
         console.log("Change of rate detected");
         s.send({'type': 'options', 'rate': $('#rate_select').val()});
         console.log("Change of rate sent");
+    });
+
+    $('#pause_button').click(function (e) {
+        if (paused) {
+            paused = false;
+            $('#pause_button').html('Pause');
+        } else {
+            paused = true;
+            $('#pause_button').html('Unpause');
+        }
     });
 
 });
