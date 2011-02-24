@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="baabc6bd-a72a-42f1-83b9-9fb907680b05" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/send_message.py" afterPath="$PROJECT_DIR$/send_message.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.py" afterPath="$PROJECT_DIR$/server.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/twicks.js" afterPath="$PROJECT_DIR$/static/twicks.js" />
     </list>
     <ignored path="twicks.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,10 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="server.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="server.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="0" selection-start="1053" selection-end="1053" vertical-scroll-proportion="0.4057332">
+            <state line="68" column="60" selection-start="2063" selection-end="2063" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -55,10 +52,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="39" selection-start="1360" selection-end="1360" vertical-scroll-proportion="-14.72">
+            <state line="13" column="191" selection-start="1052" selection-end="1052" vertical-scroll-proportion="0.2945915">
               <folding />
             </state>
           </provider>
@@ -116,9 +113,9 @@
       <list>
         <option value="$PROJECT_DIR$/static/twicks.less" />
         <option value="$PROJECT_DIR$/send_message.py" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/static/twicks.js" />
         <option value="$PROJECT_DIR$/server.py" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -359,13 +356,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="39" selection-start="1360" selection-end="1360" vertical-scroll-proportion="-14.72">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/twicks.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="50" column="21" selection-start="1782" selection-end="1782" vertical-scroll-proportion="0.0">
@@ -375,7 +365,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="0" selection-start="1053" selection-end="1053" vertical-scroll-proportion="0.4057332">
+        <state line="68" column="60" selection-start="2063" selection-end="2063" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="191" selection-start="1052" selection-end="1052" vertical-scroll-proportion="0.2945915">
           <folding />
         </state>
       </provider>
