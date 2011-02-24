@@ -13,15 +13,18 @@ $(document).ready(function () {
     });
     
     s.addEvent('message', function (data) {
-        $('#status').html("Connected.")
-
-
         var d = $.parseJSON(data);
+        console.log(d);
 
         if (d.type == 'error') {
             reconnect = false;
             s.disconnect();
             alert(d.message);
+            return;
+        }
+
+        if (d.type == 'welcome') {
+            $('#status').html(d.message);
             return;
         }
 
