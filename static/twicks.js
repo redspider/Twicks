@@ -4,11 +4,16 @@ var reconnect = true;
 $(document).ready(function () {
     var host = window.location.host;
     host = host.replace(/\:.*/,'');
-    var s = new io.Socket(host, {port: 8888, rememberTransport: false});
+    var s = new io.Socket(host, {port: 8888, rememberTransport: false, connectTimeout: 10000, transports: ['websocket']});
     var paused = false;
 
-    s.connect();
+    s.addEvent('connecting', function (transport) {
+        console.log(transport);
+        $('#status').html("Connecting via " + transport + "...");
+    });
+    
     s.addEvent('message', function (data) {
+        $('#status').html("Connected.")
 
 
         var d = $.parseJSON(data);
@@ -55,11 +60,11 @@ $(document).ready(function () {
                 qcounts[queue] = 1;
             }
 
-            if (qcounts[queue] > 30) {
+            if (qcounts[queue] >= 30) {
                 e.hide();
             }
             target.prepend(e);
-            if (qcounts[queue] > 30) {
+            if (qcounts[queue] >= 30) {
                 e.fadeIn();
             }
 
@@ -74,11 +79,15 @@ $(document).ready(function () {
         setInterval(function () { s.send({'type': 'ping'}); },10000);
     });
     s.addEvent('disconnect', function (e) {
+        $('#status').html("Disconnected");
         if (reconnect) {
             alert("The connection to the server has been lost. Will try to reconnect");
             window.location.reload();
         }
     });
+
+    s.connect();
+    $('#status').html("Connecting...")
 
     $('#rate_select').change(function (e) {
         console.log("Change of rate detected");
