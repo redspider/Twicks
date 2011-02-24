@@ -99,6 +99,7 @@ class MessageHandler(tornadio.SocketConnection):
         """ Register participant """
         global participants
         print "New client"
+        participants.add(self)
 
         self.send(json.dumps({'type':'welcome', 'message': 'Connected!'}))
 
@@ -111,7 +112,6 @@ class MessageHandler(tornadio.SocketConnection):
         self.last_message = time.time()
         self.last_received = time.time()
         self.rate = 2
-        participants.add(self)
         for m in mc.raw.find().sort([('dated', -1)]).limit(20):
             m['id'] = str(m['_id'])
             m['_id'] = None
