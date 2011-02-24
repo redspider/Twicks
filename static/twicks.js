@@ -48,15 +48,21 @@ $(document).ready(function () {
                 dom += '</div>';
             }
             var e = $(dom);
-            e.hide();
-            target.prepend(e);
-            e.fadeIn();
 
             if (qcounts[queue]) {
                 qcounts[queue]+=1;
             } else {
                 qcounts[queue] = 1;
             }
+
+            if (qcounts[queue] > 30) {
+                e.hide();
+            }
+            target.prepend(e);
+            if (qcounts[queue] > 30) {
+                e.fadeIn();
+            }
+
 
             if (qcounts[queue] > 30) {
                 console.log("Queue " + queue + " too long (" + qcounts[queue] + ")");
