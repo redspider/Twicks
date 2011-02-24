@@ -62,7 +62,8 @@ class InboundHandler(tornado.web.RequestHandler):
             if ((time.time() - p.last_message) > float(p.rate)):
                 p.last_message = time.time()
                 p.send(mjson)
-            if (time.time() - p.last_received) > 60:
+            if (time.time() - p.last_received) > 120:
+                print "Timeout"
                 participants.remove(p)
                 #p.connection.end()
 
@@ -99,6 +100,7 @@ class MessageHandler(tornadio.SocketConnection):
         global participants
 
         if len(participants) > 120:
+            print "Server full"
             self.send(json.dumps({'type': 'error', 'message': 'Sorry the server is full right now'}))
             return
 
@@ -158,7 +160,7 @@ ROOT = os.path.normpath(os.path.dirname(__file__))
 #configure the Tornado application
 application = tornado.web.Application(
     [(r"/", IndexHandler), (r"/post", InboundHandler), (r"/update", UpdateHandler), msg_route.route()],
-    enabled_protocols = ['websocket', 'flashsocket', 'xhr-polling'],
+    enabled_protocols = ['websocket'],
     flash_policy_port = 8043,
     flash_policy_file = os.path.join(ROOT,'flashpolicy.xml'),
     socket_io_port = 8888,
