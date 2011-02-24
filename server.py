@@ -98,6 +98,7 @@ class MessageHandler(tornadio.SocketConnection):
     def on_open(self, *args, **kwargs):
         """ Register participant """
         global participants
+        print "New client"
 
         if len(participants) > 120:
             print "Server full"
