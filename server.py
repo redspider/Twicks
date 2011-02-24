@@ -1,5 +1,7 @@
 from datetime import datetime
 import tornado.web
+import tornado.websocket
+import tornado.ioloop
 import pymongo
 import bson
 import time
@@ -12,6 +14,10 @@ import tornadio.server
 #from tornadio import SocketIOServer
 import random
 from md5 import md5
+import logging
+log = logging.getLogger()
+
+logging.getLogger().setLevel(logging.DEBUG)
 
 ucheck = dict()
 
@@ -45,7 +51,7 @@ class InboundHandler(tornado.web.RequestHandler):
 
         if ucheck.has_key(msg['key']) and ((time.time() - ucheck[msg['key']]) > 1200):
             # If message has already been through and 20 minutes has passed.
-            print "Ignored key %s (%s)" % (msg['key'], msg['message'])
+            log.debug("Ignored key %s (%s)" % (msg['key'], msg['message']))
             return
         
         if not ucheck.has_key(msg['key']):
@@ -56,14 +62,14 @@ class InboundHandler(tornado.web.RequestHandler):
         msg['_id'] = None
         msg['user_count'] = len(participants)
 
-        mjson = json.dumps({'type': 'msg', 'channel': 'raw', 'm': msg})
+        mjson = {'type': 'msg', 'channel': 'raw', 'm': msg}
 
         for p in participants:
             if ((time.time() - p.last_message) > float(p.rate)):
                 p.last_message = time.time()
                 p.send(mjson)
             if (time.time() - p.last_received) > 120:
-                print "Timeout"
+                log.debug("Timeout")
                 participants.remove(p)
                 #p.connection.end()
 
@@ -82,7 +88,7 @@ class UpdateHandler(tornado.web.RequestHandler):
 
         if msg['votes'] == 1:
             for p in participants:
-                p.send(json.dumps({'type': 'msg', 'channel': 'filtered', 'm': msg}))
+                p.send({'type': 'msg', 'channel': 'filtered', 'm': msg})
 
         self.write(json.dumps({'status': 'ok'}))                
 
@@ -94,20 +100,26 @@ mc = mongo_connection['twicks']
 mc.raw.ensure_index([('dated',pymongo.DESCENDING)])
 mc.raw.ensure_index([('tag',pymongo.DESCENDING)])
 
-class MessageHandler(tornadio.SocketConnection):
-    def on_open(self, *args, **kwargs):
+class MessageHandler(tornado.websocket.WebSocketHandler):
+    def send(self, message):
+        m = json.dumps(message)
+        try:
+            self.write_message(m)
+        except IOError, e:
+            pass
+
+    def open(self, *args, **kwargs):
         """ Register participant """
         global participants
-        print "New client"
-        participants.add(self)
+        log.debug("New client")
 
-        self.send(json.dumps({'type':'welcome', 'message': 'Connected!'}))
+        self.send({'type':'welcome', 'message': 'Connected!'})
+        log.debug("Sent connected message")
 
         if len(participants) > 120:
-            print "Server full"
-            self.send(json.dumps({'type': 'error', 'message': 'Sorry the server is full right now'}))
+            log.debug("Server full")
+            self.send({'type': 'error', 'message': 'Sorry the server is full right now'})
             return
-        
 
         self.last_message = time.time()
         self.last_received = time.time()
@@ -118,8 +130,7 @@ class MessageHandler(tornadio.SocketConnection):
             m['user_count'] = len(participants)
             j = None
             try:
-                j = json.dumps({'type': 'msg', 'channel': 'raw', 'm': m})
-                self.send(j)
+                self.send({'type': 'msg', 'channel': 'raw', 'm': m})
             except Exception,e:
                 pass
 
@@ -132,46 +143,42 @@ class MessageHandler(tornadio.SocketConnection):
 
                 j = None
                 try:
-                    j = json.dumps({'type': 'msg', 'channel': 'raw', 'm': m})
-                    self.send(j)
+                    self.send({'type': 'msg', 'channel': 'raw', 'm': m})
                 except Exception,e:
                     pass
-        # Send welcome
+
+        participants.add(self)
+        
 
     def on_message(self, message):
         """ Uprate a message """
         global participants
 
-        m = message
+        m = json.loads(message)
         self.last_received = time.time()
 
         if (m['type'] == 'options'):
+            log.debug("Changed client rate to %d" % int(m['rate']))
             self.rate = int(m['rate'])
 
     def on_close(self):
         """ Remove participant """
         global participants
         
-        print "Removed client"
+        log.debug("Removed client")
         participants.remove(self)
 
-#use the routes classmethod to build the correct resource
-msg_route = tornadio.get_router(MessageHandler)
-
-ROOT = os.path.normpath(os.path.dirname(__file__))
 
 
 #configure the Tornado application
 application = tornado.web.Application(
-    [(r"/", IndexHandler), (r"/post", InboundHandler), (r"/update", UpdateHandler), msg_route.route()],
+    [(r"/", IndexHandler), (r"/post", InboundHandler), (r"/update", UpdateHandler), (r"/ws",MessageHandler)],
     enabled_protocols = ['websocket'],
-    flash_policy_port = 8043,
-    flash_policy_file = os.path.join(ROOT,'flashpolicy.xml'),
-    socket_io_port = 8888,
     static_path = os.path.join(os.path.dirname(__file__), "static")
 )
 
 if __name__ == "__main__":
-    import logging
-    logging.getLogger().setLevel(logging.DEBUG)
-    tornadio.server.SocketServer(application)
+    http_server = tornado.httpserver.HTTPServer(application)
+    http_server.listen(8888)
+    ioloop = tornado.ioloop.IOLoop.instance()
+    ioloop.start()
