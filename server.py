@@ -73,6 +73,7 @@ class MessageHandler(SocketIOHandler):
         """ Register participant """
         if (len(participants) > 120):
             self.send(json.dumps({'type': 'error', 'message': 'Sorry the server is full right now'}))
+            self.connection.end()
             return
 
         self.last_message = time.time()
