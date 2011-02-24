@@ -146,7 +146,7 @@ msg_route = MessageHandler.routes("socket.io/*")
 #configure the Tornado application
 application = tornado.web.Application(
     [(r"/", IndexHandler), (r"/post", InboundHandler), (r"/update", UpdateHandler), msg_route],
-    enabled_protocols = ['websocket', 'flashsocket', 'xhr-multipart', 'xhr-polling'],
+    enabled_protocols = ['websocket', 'flashsocket', 'xhr-polling'],
     flash_policy_port = 8043,
     flash_policy_file = 'flashpolicy.xml',
     socket_io_port = 8888,
