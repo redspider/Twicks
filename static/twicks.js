@@ -16,8 +16,8 @@ $(document).ready(function () {
     s.onmessage = function (evt) {
         var data = evt.data;
         var d = $.parseJSON(data);
-        console.log(evt.data);
-        console.log(d);
+        //console.log(evt.data);
+        //console.log(d);
 
         if (d.type == 'error') {
             reconnect = false;
@@ -93,9 +93,9 @@ $(document).ready(function () {
     $('#status').html("Connecting...")
 
     $('#rate_select').change(function (e) {
-        console.log("Change of rate detected");
+        //console.log("Change of rate detected");
         s.send(JSON.stringify({'type': 'options', 'rate': $('#rate_select').val()}));
-        console.log("Change of rate sent");
+        //console.log("Change of rate sent");
     });
 
     $('#pause_button').click(function (e) {
