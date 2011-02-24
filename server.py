@@ -88,7 +88,8 @@ class MessageHandler(SocketIOHandler):
                 pass
 
         for tag in ['damage','advice','requests']:
-            for m in mc.raw.find({'tag': tag}).sort([('dated', -1)]).limit(50):
+            messages = list(mc.raw.find({'tag': tag}).sort([('dated', -1)]).limit(50))
+            for m in messages[::-1]:
                 m['id'] = str(m['_id'])
                 m['_id'] = None
                 m['user_count'] = len(participants)
