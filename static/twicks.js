@@ -4,7 +4,7 @@ var reconnect = true;
 $(document).ready(function () {
     var host = window.location.host;
     host = host.replace(/\:.*/,'');
-    var s = new io.Socket(host, {port: 8888});
+    var s = new io.Socket(host, {port: 8888, rememberTransport: false});
     var paused = false;
 
     s.connect();

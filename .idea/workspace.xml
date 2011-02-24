@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="baabc6bd-a72a-42f1-83b9-9fb907680b05" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.py" afterPath="$PROJECT_DIR$/server.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/twicks.js" afterPath="$PROJECT_DIR$/static/twicks.js" />
     </list>
     <ignored path="twicks.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,7 +30,7 @@
       <file leaf-file-name="server.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="148" column="51" selection-start="4779" selection-end="4779" vertical-scroll-proportion="0.7353914">
+            <state line="171" column="0" selection-start="5352" selection-end="5352" vertical-scroll-proportion="0.9273553">
               <folding />
             </state>
           </provider>
@@ -55,7 +57,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="7" selection-start="2003" selection-end="2003" vertical-scroll-proportion="-28.8">
+            <state line="9" column="45" selection-start="523" selection-end="523" vertical-scroll-proportion="-5.76">
               <folding />
             </state>
           </provider>
@@ -64,7 +66,7 @@
       <file leaf-file-name="twicks.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/twicks.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="108" selection-start="889" selection-end="889" vertical-scroll-proportion="-24.0">
+            <state line="43" column="42" selection-start="1378" selection-end="1378" vertical-scroll-proportion="-26.461538">
               <folding />
             </state>
           </provider>
@@ -266,7 +268,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="770" y="304" width="1343" height="1056" extended-state="0" />
+    <frame x="730" y="461" width="1343" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -349,20 +351,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="7" selection-start="2003" selection-end="2003" vertical-scroll-proportion="-28.8">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/twicks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="108" selection-start="889" selection-end="889" vertical-scroll-proportion="-24.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tornad_io/socket_io.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="257" column="22" selection-start="8737" selection-end="8737" vertical-scroll-proportion="0.0">
@@ -370,9 +358,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="45" selection-start="523" selection-end="523" vertical-scroll-proportion="-5.76">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/twicks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="42" selection-start="1378" selection-end="1378" vertical-scroll-proportion="-26.461538">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="148" column="51" selection-start="4779" selection-end="4779" vertical-scroll-proportion="0.7353914">
+        <state line="171" column="0" selection-start="5352" selection-end="5352" vertical-scroll-proportion="0.9273553">
           <folding />
         </state>
       </provider>

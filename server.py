@@ -5,8 +5,11 @@ import bson
 import time
 import os
 import simplejson as json
-from tornad_io import SocketIOHandler
-from tornad_io import SocketIOServer
+import tornadio
+import tornadio.router
+import tornadio.server
+#from tornadio import SocketIOHandler
+#from tornadio import SocketIOServer
 import random
 from md5 import md5
 
@@ -90,10 +93,12 @@ mc = mongo_connection['twicks']
 mc.raw.ensure_index([('dated',pymongo.DESCENDING)])
 mc.raw.ensure_index([('tag',pymongo.DESCENDING)])
 
-class MessageHandler(SocketIOHandler):
+class MessageHandler(tornadio.SocketConnection):
     def on_open(self, *args, **kwargs):
         """ Register participant """
-        if (len(participants) > 120):
+        global participants
+
+        if len(participants) > 120:
             self.send(json.dumps({'type': 'error', 'message': 'Sorry the server is full right now'}))
             return
 
@@ -129,6 +134,8 @@ class MessageHandler(SocketIOHandler):
 
     def on_message(self, message):
         """ Uprate a message """
+        global participants
+
         m = message
         self.last_received = time.time()
 
@@ -137,21 +144,28 @@ class MessageHandler(SocketIOHandler):
 
     def on_close(self):
         """ Remove participant """
+        global participants
+        
         print "Removed client"
         participants.remove(self)
 
 #use the routes classmethod to build the correct resource
-msg_route = MessageHandler.routes("socket.io/*")
+msg_route = tornadio.get_router(MessageHandler)
+
+ROOT = os.path.normpath(os.path.dirname(__file__))
+
 
 #configure the Tornado application
 application = tornado.web.Application(
-    [(r"/", IndexHandler), (r"/post", InboundHandler), (r"/update", UpdateHandler), msg_route],
+    [(r"/", IndexHandler), (r"/post", InboundHandler), (r"/update", UpdateHandler), msg_route.route()],
     enabled_protocols = ['websocket', 'flashsocket', 'xhr-polling'],
     flash_policy_port = 8043,
-    flash_policy_file = 'flashpolicy.xml',
+    flash_policy_file = os.path.join(ROOT,'flashpolicy.xml'),
     socket_io_port = 8888,
     static_path = os.path.join(os.path.dirname(__file__), "static")
 )
 
 if __name__ == "__main__":
-    socketio_server = SocketIOServer(application) #spin up the server
+    import logging
+    logging.getLogger().setLevel(logging.DEBUG)
+    tornadio.server.SocketServer(application)
