@@ -115,7 +115,11 @@ $(document).ready(function () {
 });
 
 function tag(id, tag) {
-    $('#m_'+id+'_raw').fadeOut();
+    if (tag == 'junk') {
+        $('#m_'+id+'_raw').addClass('faded');
+    } else {
+        $('#m_'+id+'_raw').fadeOut();
+    }
     $.post('/update',{'id':id, 'tag':tag});
     return false;
 }

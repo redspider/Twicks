@@ -123,3 +123,5 @@ div.message button.red {
 }
 div.message.tagged { background-color: #585858; }
 div.message.tagged div.buttons { background-color: #585858; }
+div.message.faded { opacity: 0.5; }
+div.message.faded div.buttons { display: none; }
