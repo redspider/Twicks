@@ -53,6 +53,7 @@ $(document).ready(function () {
             var dom = '<div class="message" id="m_'+m.id+'_'+queue+'"><div class="from_user"><a href="http://twitter.com/'+m.from+'" target="_blank"><img class="profile_image" src="'+m.profile_image+'" /></a></div><div>'+processed_text+'</div>';
             if (queue == 'raw') {
                 dom += '<div class="buttons">';
+                dom += '<button class="tag_button red" onclick="tag(\''+m.id+'\',\'junk\')">Junk</button>';
                 dom += '<button class="tag_button" onclick="tag(\''+m.id+'\',\'damage\')">damage</button>';
                 dom += '<button class="tag_button" onclick="tag(\''+m.id+'\',\'advice\')">advice</button>';
                 dom += '<button class="tag_button" onclick="tag(\''+m.id+'\',\'requests\')">requests</button>';

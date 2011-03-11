@@ -49,7 +49,9 @@ class InboundHandler(tornado.web.RequestHandler):
             'key': normalise(self.get_argument('message'))
         }
 
+        #if ucheck.has_key(msg['key']) and ((time.time() - ucheck[msg['key']]) > 1200):
         if ucheck.has_key(msg['key']) and ((time.time() - ucheck[msg['key']]) > 1200):
+
             # If message has already been through and 20 minutes has passed.
             log.debug("Ignored key %s (%s)" % (msg['key'], msg['message']))
             return

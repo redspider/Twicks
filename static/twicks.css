@@ -1,12 +1,54 @@
-@import url("reset.css");
-
-@import url("text.css");
-/* Reset to some base standard */
-/* Set up text so it isn't completely awful */
-/* Page */
-html {
-  background-color: #373737;
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
 }
+fieldset legend { display: none; }
+:focus { outline: 0; }
+body {
+  line-height: 1;
+  color: black;
+  background: white;
+}
+ol, ul { list-style: none; }
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+}
+blockquote:before { content: ""; }
+blockquote:after { content: ""; }
+q:before { content: ""; }
+q:after { content: ""; }
+blockquote, q { quotes: "" ""; }
+body { font: 13px/1.5 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif; }
+a:focus { outline: 1px dotted invert; }
+hr {
+  border: 0 #cccccc solid;
+  border-top-width: 1px;
+  clear: both;
+  height: 0;
+}
+h1 { font-size: 25px; }
+h2 { font-size: 23px; }
+h3 { font-size: 21px; }
+h4 { font-size: 19px; }
+h5 { font-size: 17px; }
+h6 { font-size: 15px; }
+ol { list-style: decimal; }
+ul { list-style: disc; }
+li { margin-left: 30px; }
+p, dl, hr, h1, h2, h3, h4, h5, h6, ol, ul, pre, table, address, fieldset { margin-bottom: 20px; }
+html { background-color: #373737; }
 body {
   background-color: #373737;
   border: none;
@@ -24,20 +66,15 @@ div.column {
   width: 300px;
   margin: 0px 20px 30px 20px;
 }
-/* Message */
 div.message {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
   background-color: #282828;
   padding: 4px 4px 4px 60px;
-  min-height: 54px;
+  min-height: 48px;
   position: relative;
   color: #cccccc;
   margin: 2px;
   font-size: 8pt;
   padding-bottom: 30px;
-  overflow: hidden;
 }
 div.message .from_user a {
   font-weight: bold;
@@ -53,46 +90,22 @@ div.message img.profile_image {
   height: 48px;
 }
 div.message div.buttons {
-   border-top: 1px solid #222;
   position: absolute;
   width: 288px;
   padding: 4px;
   text-align: right;
-  background-color: #2f2f2f;
+  background-color: #686868;
   bottom: 0px;
   right: 0px;
-    -webkit-border-bottom-right-radius: 4px;
--webkit-border-bottom-left-radius: 4px;
--moz-border-radius-bottomright: 4px;
--moz-border-radius-bottomleft: 4px;
-border-bottom-right-radius: 4px;
-border-bottom-left-radius: 4px;
-
 }
 div.message button {
   display: inline;
   width: 60px;
   margin: 2px;
-  background-color: #999999;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-  border: 1px solid #999999;
 }
-
-div.message button:hover {
-    background-color: #aaaaaa;
-    border: 1px solid #aaa;
-    cursor: pointer;
+div.message button.red {
+  color: white;
+  background-color: #660000;
 }
-
-div.message.tagged {
-  background-color: #585858;
-}
-div.message.tagged div.buttons {
-  background-color: #585858;
-}
-
-h4 {
-    border-bottom: 2px solid #303030;
-}
+div.message.tagged { background-color: #585858; }
+div.message.tagged div.buttons { background-color: #585858; }
