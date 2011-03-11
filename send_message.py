@@ -16,12 +16,12 @@ class TwitterSearch(object):
     def __init__(self, term):
         self.term = term
 
-    def fetch(self, limit=1):
+    def fetch(self, limit=100):
         """
         Search
         """
         
-        query = dict(q=self.term, result_type='recent', rpp="100")
+        query = dict(q=self.term, result_type='recent', rpp=str(limit))
         if self.last_id:
             query['since_id'] = self.last_id
 	try:
@@ -39,19 +39,29 @@ class TwitterSearch(object):
         return result['results']
         
         
-ts = TwitterSearch('#eqnz OR earthquake OR #nzeq OR #chch')
+ts = TwitterSearch('#eqjp OR #Japan')
 
 pre_load = dict()
+
+limit = 1
 
 while True:
 
     messages = []
 
-    for r in ts.fetch():
+    for r in ts.fetch(limit):
+        m = r['text'].encode('ascii','ignore')
+        if "Social Media Response" in m:
+            print "SKIP"
+            continue
+        if "http://bit.ly/fidUpe" in m:
+            print "SKIP"
+            continue
         messages.append(r)
 
 
     waiting = 0.0
+    limit = 100
 
 
     for r in messages:
