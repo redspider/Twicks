@@ -97,7 +97,7 @@ class UpdateHandler(tornado.web.RequestHandler):
 
 participants = set()
 mongo_connection = pymongo.Connection()
-mc = mongo_connection['twicks']
+mc = mongo_connection['twicksjp']
 
 mc.raw.ensure_index([('dated',pymongo.DESCENDING)])
 mc.raw.ensure_index([('tag',pymongo.DESCENDING)])
